@@ -1,5 +1,7 @@
 {
     "BaseURI": ["https://help.uillinois.edu/TDWebApi/api/"],
+    // Your TDX Application ID
+    "AppID": ["66"],
     // When enabled, will trim trailing whitespace when you save a file.
     "files.trimTrailingWhitespace": true
 }
