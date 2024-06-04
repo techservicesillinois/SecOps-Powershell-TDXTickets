@@ -1,5 +1,5 @@
 {
-    "BaseURI": ["https://help.uillinois.edu/SBTDWebApi/api/"],
+    "BaseURI": ["https://help.uillinois.edu/TDWebApi/api/"],
     // When enabled, will trim trailing whitespace when you save a file.
     "files.trimTrailingWhitespace": true
 }
