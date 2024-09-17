@@ -30,7 +30,7 @@ function Invoke-TDXRestCall {
     begin {
         if($null -eq $Script:Session){
             Write-Verbose -Message 'No TDX Token provided. Please provide TDX API credentials.'
-            New-TDXToken
+            New-TDXSession
         }
     }
 

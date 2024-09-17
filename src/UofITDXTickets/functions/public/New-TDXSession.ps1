@@ -1,15 +1,15 @@
 <#
 .Synopsis
-   This function creates a TDX authentication token to be used with the other functions in this module.
+    This function creates a TDX authentication token and stores it as a script session variable to be used with the other functions in this module.
 .DESCRIPTION
-   This function creates a TDX authentication token to be used with the other functions in this module.
+    This function creates a TDX authentication token and stores it as a script session variable to be used with the other functions in this module.
 .PARAMETER Credential
     Credentials used to authenticate to the TDX API
 .EXAMPLE
     $Credential = Get-Credential
-    New-TDXToken -Credential $Credential
+    New-TDXSession -Credential $Credential
 #>
-function New-TDXToken{
+function New-TDXSession{
     [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory)]

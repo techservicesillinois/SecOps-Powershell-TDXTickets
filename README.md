@@ -21,3 +21,5 @@ Get-Help is available for all functions in this module.
 Submit a pull request on GitHub.
 
 # To Do
+
+- Move-TDXTicket
