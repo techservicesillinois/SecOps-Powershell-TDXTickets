@@ -19,6 +19,7 @@
     Remove-TDXTicketSLA -TicketID '1394102' -UsersToNotify @('buch1@illinois.edu')
 #>
 function Remove-TDXTicketSLA{
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
@@ -27,31 +28,32 @@ function Remove-TDXTicketSLA{
     )
 
     process{
+        if ($PSCmdlet.ShouldProcess("$($TicketID)", "Delete SLA from Ticket")){
+            $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/sla/delete"
 
-        $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/sla/delete"
-
-        if ($Comment) {
-            $Body = @{
-                'Comments' = $Comment
+            if ($Comment) {
+                $Body = @{
+                    'Comments' = $Comment
+                }
             }
-        }
-        Elseif ($UsersToNotify) {
-            $Body = @{
-                'Notify' = $UsersToNotify
+            Elseif ($UsersToNotify) {
+                $Body = @{
+                    'Notify' = $UsersToNotify
+                }
             }
-        }
 
-        if($Comment -and $UsersToNotify){
-            $Body['Notify'] = $UsersToNotify
-        }
-        
-        $RestSplat = @{
-            Method      = 'PUT'
-            RelativeURI = $RelativeUri
-            Body        = $Body | ConvertTo-Json
-        }
+            if($Comment -and $UsersToNotify){
+                $Body['Notify'] = $UsersToNotify
+            }
+            
+            $RestSplat = @{
+                Method      = 'PUT'
+                RelativeURI = $RelativeUri
+                Body        = $Body | ConvertTo-Json
+            }
 
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
+        }
     }
 }
