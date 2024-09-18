@@ -22,4 +22,6 @@ Submit a pull request on GitHub.
 
 # To Do
 
-- Move-TDXTicket
+- Remove-TDXTicketContact (prereq: Get-TDXPeople?)
+- Add-TDXTicketContact (prereq: Get-TDXPeople?)
+- Get-TDXTicketResource (custom functionality?)
