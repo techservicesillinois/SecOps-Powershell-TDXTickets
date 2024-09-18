@@ -25,3 +25,6 @@ Submit a pull request on GitHub.
 - Remove-TDXTicketContact (prereq: Get-TDXPeople?)
 - Add-TDXTicketContact (prereq: Get-TDXPeople?)
 - Get-TDXTicketResource (custom functionality?)
+- Remove comment from relativeURI of all existing functions
+- Remove Add-TDXTicketComment (replaced with Update-TDXTicket)
+- Add Get-TDXTicketStatuses
