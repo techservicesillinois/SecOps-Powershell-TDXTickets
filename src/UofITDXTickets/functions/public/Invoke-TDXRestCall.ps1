@@ -9,14 +9,16 @@
     Method of the REST call Ex: GET
 .PARAMETER Body
     Body of the REST call as a hashtable
+.PARAMETER ContentType
+    Content Type provided in the header. Default is application/json
 .EXAMPLE
-   $Body = @{
-        action = 'list'
-        echo_request = '1'
+    $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)"
+    $RestSplat = @{
+        Method = 'GET'
+        RelativeURI = $RelativeUri
     }
-    Invoke-QualysRestCall -RelativeURI asset/ip/ -Method GET -Body $Body
-    This will return an array of all host assets (IPs) in Qualys
-#> # TODO - Update this example to be more relevant to TDX
+    Invoke-TDXRestCall @RestSplat
+#>
 function Invoke-TDXRestCall {
     [CmdletBinding()]
     param (
@@ -62,7 +64,6 @@ function Invoke-TDXRestCall {
             $Script:APICallCount++
         }
     }
-
     end {
     }
 }

@@ -18,7 +18,7 @@ function New-TDXSession{
 
     process{
 
-        # if ($PSCmdlet.ShouldProcess("$($Script:Settings.BaseURI)session/")){
+        if ($PSCmdlet.ShouldProcess("$($Script:Settings.BaseURI)session/")){
             $Body = @{
                 'username' = $Credential.UserName
                 'password' = $Credential.GetNetworkCredential().Password
@@ -38,6 +38,6 @@ function New-TDXSession{
             else{
                 throw $_
             }    
-        # }
+        }
     }
 }

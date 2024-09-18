@@ -6,7 +6,7 @@
 .PARAMETER TicketID
     The ID of the Ticket.
 .EXAMPLE
-    Get-TDXTicket -TicketID '1392171'
+    Get-TDXTicket -TicketID '1394102'
 #>
 function Get-TDXTicket{
     param (
