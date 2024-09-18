@@ -8,6 +8,7 @@
     The ID of the Ticket.
 .PARAMETER NewStatusID
     ID of the new status to set the ticket to.
+    Use Get-TDXTicketStatuses to get the list of statuses.
 .PARAMETER Comment
     Comment to add to the ticket.
 .PARAMETER UsersToNotify
