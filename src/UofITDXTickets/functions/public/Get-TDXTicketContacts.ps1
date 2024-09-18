@@ -21,7 +21,6 @@ function Get-TDXTicketContacts{
 
     process{
 
-        # Complete URI with query parameters
         $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/contacts"
 
         $RestSplat = @{

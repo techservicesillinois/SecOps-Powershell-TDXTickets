@@ -19,7 +19,6 @@ function Find-TDXPeople{
 
     process{
 
-        # Complete URI with query parameters
         $RelativeUri = "people/search"
 
         $Body = @{

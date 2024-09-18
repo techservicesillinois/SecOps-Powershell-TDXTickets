@@ -23,7 +23,7 @@ function Remove-TDXTicketContact{
     process{
 
         if ($PSCmdlet.ShouldProcess("$($ContactUID)/$($TicketID)", "Delete Contact from Ticket")){
-            # Complete URI with query parameters
+
             $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/contacts/$($ContactUID)"
 
             $RestSplat = @{
