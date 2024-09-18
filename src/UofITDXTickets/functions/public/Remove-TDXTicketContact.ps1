@@ -12,7 +12,7 @@
     Remove-TDXTicketContact -TicketID '1394102' -ContactUID 'f85241a5-ac81-ed11-ac20-0050f2e67210'
 #>
 function Remove-TDXTicketContact{
-    [CmdletBinding()]
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
@@ -22,15 +22,17 @@ function Remove-TDXTicketContact{
 
     process{
 
-        # Complete URI with query parameters
-        $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/contacts/$($ContactUID)"
+        if ($PSCmdlet.ShouldProcess("$($ContactUID)/$($TicketID)", "Delete Contact from Ticket")){
+            # Complete URI with query parameters
+            $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/contacts/$($ContactUID)"
 
-        $RestSplat = @{
-            Method = 'DELETE'
-            RelativeURI = $RelativeUri
+            $RestSplat = @{
+                Method = 'DELETE'
+                RelativeURI = $RelativeUri
+            }
+
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
         }
-
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
     }
 }
