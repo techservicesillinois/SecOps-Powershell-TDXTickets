@@ -53,7 +53,7 @@ function Invoke-TDXRestCall {
         if($Body){
             $IVRSplat.Add('Body', $Body)
         }
-
+        
         #Retry parameters only available in Powershell 7.1+, so we use a try/catch to retry calls once to compensate for short periods where the TDX api is unreachable
         try{
             Invoke-RestMethod @IVRSplat

@@ -3,7 +3,7 @@
     Updates a ticket. 
 .DESCRIPTION
     Updates a ticket. You can update status, add comments, and notify users at the same time using this function.
-    To update custom attributes use the Set-TDXTicketCustomAttributes function.
+    To update custom attributes and other ticket details, use the Edit-TDXTicket function.
 .PARAMETER TicketID
     The ID of the Ticket.
 .PARAMETER NewStatusID

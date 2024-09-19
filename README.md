@@ -28,3 +28,5 @@ Submit a pull request on GitHub.
 - Get-TDXTicketSLAs
 - Reports
 - Any way to get list of SLA IDs, Status IDs, and/or Workflow IDs via API?
+- Any way to get TypeIDs or FormIDs via API?
+- Any way to get group IDs via API?
