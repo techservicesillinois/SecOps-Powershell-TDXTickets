@@ -25,6 +25,7 @@
     The ID of the ticket source associated with the ticket.
 .PARAMETER StatusID
     The ID of the status associated with the ticket.
+    Use Get-TDXTicketStatuses to get the list of statuses.
 .PARAMETER PriorityID
     The ID of the priority associated with the ticket.
 .PARAMETER GoesOffHoldDate

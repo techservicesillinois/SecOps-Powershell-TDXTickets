@@ -75,7 +75,6 @@ FunctionsToExport = @(
     'Add-TDXTicketAttachment',
     'Get-TDXTicketContacts',
     'Get-TDXTicketFeed',
-    'Add-TDXTicketComment',
     'Find-TDXPeople',
     'Remove-TDXTicketContact',
     'Add-TDXTicketContact',
