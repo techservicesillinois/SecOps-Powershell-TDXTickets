@@ -27,6 +27,7 @@ Submit a pull request on GitHub.
 - Get-TDXTicketResource (custom functionality?)
 - Get-TDXTicketSLAs
 - Reports
-- Any way to get list of SLA IDs, Status IDs, and/or Workflow IDs via API?
-- Any way to get TypeIDs or FormIDs via API?
+- Any way to get list of SLA IDs and/or Workflow IDs via API?
+- Any way to get TypeIDs via API?
 - Any way to get group IDs via API?
+- What's the diff between PATCH and POST for editing a ticket?

@@ -12,6 +12,7 @@
     The ID of the ticket type associated with the ticket.
 .PARAMETER FormID
     The ID of the form associated with the ticket.
+    Use Get-TDXTicketForms to get the list of forms.
 .PARAMETER Title
     The title of the ticket.
 .PARAMETER Description
