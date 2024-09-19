@@ -27,3 +27,4 @@ Submit a pull request on GitHub.
 - Get-TDXTicketResource (custom functionality?)
 - Get-TDXTicketSLAs
 - Reports
+- Any way to get list of SLA IDs, Status IDs, and/or Workflow IDs via API?

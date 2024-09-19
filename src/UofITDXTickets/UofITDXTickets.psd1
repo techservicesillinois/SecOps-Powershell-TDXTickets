@@ -82,7 +82,9 @@ FunctionsToExport = @(
     'Update-TDXTicket',
     'Get-TDXTicketStatuses',
     'Set-TDXTicketSLA',
-    'Remove-TDXTicketSLA'
+    'Remove-TDXTicketSLA',
+    'Get-TDXTicketWorkflow',
+    'Set-TDXTicketWorkflow'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
