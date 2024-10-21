@@ -22,6 +22,4 @@ Submit a pull request on GitHub.
 
 # To Do
 
-- Get-TDXTicketResource (custom functionality?)
-- Reports
 - Ticket Tasks functions https://help.uillinois.edu/TDWebApi/Home/section/TicketTasks
