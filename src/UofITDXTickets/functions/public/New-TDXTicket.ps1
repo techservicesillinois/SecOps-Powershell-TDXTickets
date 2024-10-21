@@ -52,7 +52,7 @@
     New-TDXTicket -AccountID 7902 -PriorityID 24 -TypeID 345 -StatusID 357 -Title "Test Ticket" -RequestorUID "3c3caa7d-c365-ed11-ade6-0050f2e6378b" -Description "test ticket"
 #>
 function New-TDXTicket{
-    [CmdletBinding(DefaultParameterSetName="None")]
+    [CmdletBinding(DefaultParameterSetName="None",SupportsShouldProcess)]
     param (
         [switch]$EnableNotifyReviewer,
         [switch]$AllowRequestorCreation,
@@ -82,34 +82,36 @@ function New-TDXTicket{
     )
 
     process{
-        $QueryObjects = @()
-        $QueryParams = @('EnableNotifyReviewer', 'NotifyRequestor', 'NotifyResponsible', 'AllowRequestorCreation','applyDefaults') 
-        $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() | ForEach-Object { 
-            if ($QueryParams -contains $_.Key) {
-                $QueryObjects += "$( $_.Key )=$( $_.Value )"
+        if ($PSCmdlet.ShouldProcess("$($Title)", "Creates New Ticket")){
+            $QueryObjects = @()
+            $QueryParams = @('EnableNotifyReviewer', 'NotifyRequestor', 'NotifyResponsible', 'AllowRequestorCreation','applyDefaults') 
+            $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() | ForEach-Object { 
+                if ($QueryParams -contains $_.Key) {
+                    $QueryObjects += "$( $_.Key )=$( $_.Value )"
+                }
             }
-        }
 
-        $QueryString = $QueryObjects -join "&"
-        $RelativeUri = "$($Script:Settings.AppID)/tickets?$($QueryString)"
+            $QueryString = $QueryObjects -join "&"
+            $RelativeUri = "$($Script:Settings.AppID)/tickets?$($QueryString)"
 
-        # Initialize the body array
-        $Body = @{}
+            # Initialize the body array
+            $Body = @{}
 
-        # Iterate over all bound parameters, excluding the unique params, and params that don't belong in the body
-        foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator()) {
-            if ($param.Key -notin $QueryParams) {
-                $Body[$param.Key] = $param.Value
+            # Iterate over all bound parameters, excluding the unique params, and params that don't belong in the body
+            foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator()) {
+                if ($param.Key -notin $QueryParams) {
+                    $Body[$param.Key] = $param.Value
+                }
             }
-        }
 
-        $RestSplat = @{
-            Method      = 'POST'
-            RelativeURI = $RelativeUri
-            Body        = $Body | ConvertTo-Json -Depth 3
-        }
+            $RestSplat = @{
+                Method      = 'POST'
+                RelativeURI = $RelativeUri
+                Body        = $Body | ConvertTo-Json -Depth 3
+            }
 
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
+        }
     }
 }
