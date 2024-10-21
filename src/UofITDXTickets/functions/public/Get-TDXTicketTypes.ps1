@@ -11,9 +11,9 @@
     Get-TDXTicketTypes -IncludeInactive
 #>
 function Get-TDXTicketTypes{
+    [CmdletBinding()]
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSUseSingularNouns', '',
             Justification = 'This is consistent with the vendors verbiage')]
-    [CmdletBinding()]
     param (
         [switch]$IncludeInactive
     )
