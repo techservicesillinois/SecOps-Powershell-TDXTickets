@@ -37,6 +37,7 @@
     You can get people UIDs from Find-TDXPeople
 .PARAMETER ResponsibleGroupID
     The ID of the responsible group associated with the ticket.
+    You can get group IDs from Find-TDXGroups
 .PARAMETER ResponsibleUid
     The UID of the responsible user associated with the ticket.
     You can get people UIDs from Find-TDXPeople

@@ -74,10 +74,12 @@
     The UIDs of the responsible users to filter on.
 .PARAMETER ResponsibilityGroupIDs
     The IDs of the responsible groups to filter on.
+    You can get group IDs from Find-TDXGroups
 .PARAMETER PrimaryResponsibilityUids
     The UIDs of the primarily-responsible users to filter on.
 .PARAMETER PrimaryResponsibilityGroupIDs
     The IDs of the primarily-responsible groups to filter on.
+    You can get group IDs from Find-TDXGroups
 .PARAMETER SlaIDs
     The SLA IDs to filter on.
 .PARAMETER SlaViolationStatus
