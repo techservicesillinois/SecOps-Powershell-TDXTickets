@@ -23,6 +23,7 @@
     Update-TDXTicket -TicketID '1394102' -NewStatusID 359 -Comment 'Ticket status changed'
 #>
 function Update-TDXTicket{
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
@@ -34,27 +35,30 @@ function Update-TDXTicket{
 
     process{
 
-        $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/feed"
+        if ($PSCmdlet.ShouldProcess("Ticket ID: $($TicketID)/Status: $($NewStatusID)", "Updates Ticket")){
 
-        $Body = @{
-            'Comments' = $Comment
-        }
+            $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/feed"
 
-        if ($NewStatusID) {
-            $Body['NewStatusID'] = $NewStatusID
-        }
+            $Body = @{
+                'Comments' = $Comment
+            }
 
-        if ($UsersToNotify) {
-            $Body['Notify'] = $UsersToNotify
-        }
-        
-        $RestSplat = @{
-            Method      = 'POST'
-            RelativeURI = $RelativeUri
-            Body        = $Body | ConvertTo-Json
-        }
+            if ($NewStatusID) {
+                $Body['NewStatusID'] = $NewStatusID
+            }
 
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
+            if ($UsersToNotify) {
+                $Body['Notify'] = $UsersToNotify
+            }
+            
+            $RestSplat = @{
+                Method      = 'POST'
+                RelativeURI = $RelativeUri
+                Body        = $Body | ConvertTo-Json
+            }
+
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
+        }
     }
 }
