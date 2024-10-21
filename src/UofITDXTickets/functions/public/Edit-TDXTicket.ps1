@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Updates a ticket. 
+    Updates a ticket.
 .DESCRIPTION
     Updates a ticket. You can edit most properties of a ticket using this function including custom attributes.
 .PARAMETER TicketID
@@ -126,7 +126,7 @@ function Edit-TDXTicket{
                 }
             }
         }
-        
+
         $RestSplat = @{
             Method      = 'PATCH'
             RelativeURI = $RelativeUri

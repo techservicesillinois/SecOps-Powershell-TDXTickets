@@ -1,6 +1,6 @@
 <#
 .Synopsis
-    Updates a ticket. 
+    Updates a ticket.
 .DESCRIPTION
     Updates a ticket. You can update status, add comments, and notify users at the same time using this function.
     To update custom attributes and other ticket details, use the Edit-TDXTicket function.
@@ -50,7 +50,7 @@ function Update-TDXTicket{
             if ($UsersToNotify) {
                 $Body['Notify'] = $UsersToNotify
             }
-            
+
             $RestSplat = @{
                 Method      = 'POST'
                 RelativeURI = $RelativeUri

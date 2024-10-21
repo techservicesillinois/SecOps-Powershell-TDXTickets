@@ -1,10 +1,10 @@
 <#
 .Synopsis
-    Gets the ticket contacts. 
+    Gets the ticket contacts.
 .DESCRIPTION
     Gets the ticket contacts.
-    Note: Contacts are not the same as Resources. Check the 'People' tab of the ticket to see the distinction. 
-    For resources, use Get-TDXTicket and look at the 'Notify' property of the ticket. 
+    Note: Contacts are not the same as Resources. Check the 'People' tab of the ticket to see the distinction.
+    For resources, use Get-TDXTicket and look at the 'Notify' property of the ticket.
 .PARAMETER TicketID
     The ID of the Ticket.
 .EXAMPLE

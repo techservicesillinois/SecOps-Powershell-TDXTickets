@@ -37,7 +37,7 @@ function New-TDXSession{
             }
             else{
                 throw $_
-            }    
+            }
         }
     }
 }

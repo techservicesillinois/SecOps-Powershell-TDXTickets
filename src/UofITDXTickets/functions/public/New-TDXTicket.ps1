@@ -84,8 +84,8 @@ function New-TDXTicket{
     process{
         if ($PSCmdlet.ShouldProcess("$($Title)", "Creates New Ticket")){
             $QueryObjects = @()
-            $QueryParams = @('EnableNotifyReviewer', 'NotifyRequestor', 'NotifyResponsible', 'AllowRequestorCreation','applyDefaults') 
-            $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() | ForEach-Object { 
+            $QueryParams = @('EnableNotifyReviewer', 'NotifyRequestor', 'NotifyResponsible', 'AllowRequestorCreation','applyDefaults')
+            $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator() | ForEach-Object {
                 if ($QueryParams -contains $_.Key) {
                     $QueryObjects += "$( $_.Key )=$( $_.Value )"
                 }

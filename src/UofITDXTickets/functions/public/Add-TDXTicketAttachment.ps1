@@ -19,7 +19,7 @@ function Add-TDXTicketAttachment{
     )
 
     process{
-        
+
         # Encode file
         if($InputFilePath -like "*\*"){
             $FileName = $inputfilepath.Split('\')[-1]
@@ -34,16 +34,16 @@ function Add-TDXTicketAttachment{
         $fileEnc = [System.Text.Encoding]::GetEncoding('ISO-8859-1').GetString($fileBytes)
         $boundary = [System.Guid]::NewGuid().ToString()
         $LF = "`r`n"
-        $bodyLines = ( 
+        $bodyLines = (
             "--$boundary",
             "Content-Disposition: form-data; name=`"$($FileName)`"; filename=`"$($FileName)`"",
             "Content-Type: application/octet-stream$LF",
             $fileEnc,
-            "--$boundary--$LF" 
+            "--$boundary--$LF"
         ) -join $LF
 
         # Make the REST API call (not using Invoke-TDXRestCall because of unique requirements)
-        $IVRSplat = @{ 
+        $IVRSplat = @{
             Headers = @{
                 'Content-Type' = "multipart/form-data; boundary=`"$boundary`""
                 'Authorization' = "Bearer $($Script:Session)"

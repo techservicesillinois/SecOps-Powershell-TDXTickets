@@ -46,7 +46,7 @@ function Set-TDXTicketSLA{
             if ($UsersToNotify) {
                 $Body['Notify'] = $UsersToNotify
             }
-            
+
             $RestSplat = @{
                 Method      = 'PUT'
                 RelativeURI = $RelativeUri

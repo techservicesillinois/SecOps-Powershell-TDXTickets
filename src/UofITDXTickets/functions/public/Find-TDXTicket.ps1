@@ -170,7 +170,7 @@ function Find-TDXTicket{
         foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator()) {
             $Body[$param.Key] = $param.Value
         }
-        
+
         $RestSplat = @{
             Method = 'POST'
             RelativeURI = $RelativeUri

@@ -30,7 +30,7 @@ function Set-TDXTicketWorkflow{
         if ($PSCmdlet.ShouldProcess("Ticket ID: $($TicketID)/Workflow ID: $($NewSLAID)", "Sets Workflow for Ticket")){
 
             $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/workflow?newWorkflowId=$($NewWorkflowID)&allowRemoveExisting=$($AllowRemoveExisting)"
-            
+
             $RestSplat = @{
                 Method      = 'PUT'
                 RelativeURI = $RelativeUri

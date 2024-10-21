@@ -23,7 +23,7 @@ function Add-TDXTicketContact{
     process{
 
         if ($PSCmdlet.ShouldProcess("$($ContactUID)/$($TicketID)", "Add Contact to Ticket")){
-            
+
             $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/contacts/$($ContactUID)"
 
             $RestSplat = @{

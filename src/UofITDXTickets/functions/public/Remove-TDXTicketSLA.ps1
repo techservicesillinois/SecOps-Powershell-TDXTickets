@@ -45,7 +45,7 @@ function Remove-TDXTicketSLA{
             if($Comment -and $UsersToNotify){
                 $Body['Notify'] = $UsersToNotify
             }
-            
+
             $RestSplat = @{
                 Method      = 'PUT'
                 RelativeURI = $RelativeUri
