@@ -10,6 +10,7 @@
     Do not specify $true or $false, just use the switch.
 .PARAMETER TypeID
     The ID of the ticket type associated with the ticket.
+    Use Get-TDXTicketTypes to get the list of types.
 .PARAMETER FormID
     The ID of the form associated with the ticket.
     Use Get-TDXTicketForms to get the list of forms.

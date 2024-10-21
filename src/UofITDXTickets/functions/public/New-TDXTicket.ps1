@@ -15,6 +15,7 @@
     When set to true, notifies the responsible party of the ticket once the ticket has been created. Default is false.
 .PARAMETER TypeID
     The ID of the ticket type associated with the ticket.
+    Use Get-TDXTicketTypes to get the list of types.
 .PARAMETER FormID
     The ID of the form associated with the ticket.
     Use Get-TDXTicketForms to get the list of forms.

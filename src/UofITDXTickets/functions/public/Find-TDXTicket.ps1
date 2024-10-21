@@ -19,6 +19,7 @@
     The account/department IDs to filter on.
 .PARAMETER TypeIDs
     The ticket type IDs to filter on.
+    Use Get-TDXTicketTypes to get the list of types.
 .PARAMETER UpdatedDateFrom
     The minimum updated date to filter on.
 .PARAMETER UpdatedDateTo
