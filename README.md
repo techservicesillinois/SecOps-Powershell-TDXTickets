@@ -14,7 +14,19 @@ Install-Module -Name 'UofITDXTickets'
 
 # How does it work?
 
-Get-Help is available for all functions in this module.
+After installing the module, change the BaseURI and/or AppID in the settings.json file.
+Import the module using:
+```Powershell
+Import-Module -Name 'UofITDXTickets'
+```
+For a list of functions:
+```Powershell
+Get-Command -Module 'UofITDXTickets'
+```
+Get-Help is available for all functions in this module. For example:
+```Powershell
+Get-Help 'Update-TDXTicket' -Full
+```
 
 # How do I help?
 
