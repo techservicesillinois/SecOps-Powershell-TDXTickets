@@ -91,7 +91,7 @@ function Edit-TDXTicket{
         $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)?notifyNewResponsible=$($NotifyNewResponsible)"
 
         # Initialize the body array
-        $body = ,@()
+        $Body = ,@()
 
         $ExcludedKeys = @('TicketID', 'NotifyNewResponsible', 'CustomAttributeIDs', 'CustomAttributeValues')
 

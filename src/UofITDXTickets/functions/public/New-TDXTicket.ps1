@@ -62,27 +62,27 @@
 function New-TDXTicket{
     [CmdletBinding(DefaultParameterSetName="None")]
     param (
-        [bool]$EnableNotifyReviewer,
-        [bool]$AllowRequestorCreation,
-        [bool]$NotifyRequestor,
-        [bool]$NotifyResponsible,
-        [bool]$ApplyDefaults,
-        #[Parameter(Mandatory=$true)]
+        [switch]$EnableNotifyReviewer,
+        [switch]$AllowRequestorCreation,
+        [switch]$NotifyRequestor,
+        [switch]$NotifyResponsible,
+        [switch]$ApplyDefaults,
+        [Parameter(Mandatory=$true)]
         [int]$TypeID,
         [int]$FormID,
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true)]
         [string]$Title,
         [string]$Description,
         [switch]$IsRichHTML,
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true)]
         [int]$AccountID,
         [int]$SourceID,
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true)]
         [int]$StatusID,
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true)]
         [int]$PriorityID,
         [DateTime]$GoesOffHoldDate,
-        #[Parameter(Mandatory=$true)]
+        [Parameter(Mandatory=$true)]
         [string]$RequestorUID,
         [int]$ResponsibleGroupID,
         [string]$ResponsibleUID,
@@ -100,49 +100,24 @@ function New-TDXTicket{
 
         $QueryString = $QueryObjects -join "&"
         $RelativeUri = "$($Script:Settings.AppID)/tickets?$($QueryString)"
-        $RelativeUri
+
         # Initialize the body array
-        # $body = ,@()
+        $Body = @{}
 
-        # $ExcludedKeys = @('TicketID', 'NotifyNewResponsible', 'CustomAttributeIDs', 'CustomAttributeValues')
+        # Iterate over all bound parameters, excluding the unique params, and params that don't belong in the body
+        foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator()) {
+            if ($param.Key -notin $QueryParams) {
+                $Body[$param.Key] = $param.Value
+            }
+        }
 
-        # # Iterate over all bound parameters, excluding the unique params, and params that don't belong in the body
-        # foreach ($param in $PSCmdlet.MyInvocation.BoundParameters.GetEnumerator()) {
-        #     if ($param.Key -notin $ExcludedKeys) {
-        #         # Prepare the "path" and "value" structure
-        #         $path = "/$($param.Key)"
-        #         $value = $param.Value
-        #         # Convert boolean switch parameters to "true"/"false" strings
-        #         if ($param.Value -is [switch]) {
-        #             $value = $param.Value.ToString().ToLower()
-        #         }
-        #         # Add the JSON object to the body array
-        #         $body += @{
-        #             op    = 'add'
-        #             path  = $path
-        #             value = $value
-        #         }
-        #     }
-        # }
+        $RestSplat = @{
+            Method      = 'POST'
+            RelativeURI = $RelativeUri
+            Body        = $Body | ConvertTo-Json -Depth 3
+        }
 
-        # # Handle Custom Attributes
-        # if ($CustomAttributeIDs -and $CustomAttributeValues) {
-        #     for ($i = 0; $i -lt $CustomAttributeIDs.Count; $i++) {
-        #         $Body += @{
-        #             'op'    = 'add'
-        #             'path'  = "/attributes/$($CustomAttributeIDs[$i])"
-        #             'value' = $CustomAttributeValues[$i]
-        #         }
-        #     }
-        # }
-        
-        # $RestSplat = @{
-        #     Method      = 'PATCH'
-        #     RelativeURI = $RelativeUri
-        #     Body        = $Body | ConvertTo-Json -Depth 3
-        # }
-
-        # $Response = Invoke-TDXRestCall @RestSplat
-        # $Response
+        $Response = Invoke-TDXRestCall @RestSplat
+        $Response
     }
 }
