@@ -23,8 +23,5 @@ Submit a pull request on GitHub.
 # To Do
 
 - Get-TDXTicketResource (custom functionality?)
-- Get-TDXTicketSLAs
 - Reports
-- Any way to get list of SLA IDs and/or Workflow IDs via API?
-- Any way to get group IDs via API?
-- What's the diff between PATCH and POST for editing a ticket?
+- Ticket Tasks functions https://help.uillinois.edu/TDWebApi/Home/section/TicketTasks
