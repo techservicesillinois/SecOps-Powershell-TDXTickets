@@ -47,17 +47,7 @@
 .PARAMETER ServiceID
     The ID of the service associated with the ticket.
 .EXAMPLE
-    Edit-TDXTicket -TicketID '1394102' -Title 'New Title' -Description '<b>New Description</b>' -IsRichHTML
-.EXAMPLE
-    Edit-TDXTicket -TicketID '1394102' -StatusID 360 -FormID 1074 -ResponsibleGroupID 787
-.EXAMPLE
-    Edit-TDXTicket -TicketID '1394102' -ResponsibleUid (Find-TDXPeople -SearchText 'Tamara Buch').UID -NotifyNewResponsible
-.EXAMPLE
-    Edit-TDXTicket -TicketID '1394102' -GoesOffHoldDate (Get-Date).AddDays(7)
-.EXAMPLE
-    Edit-TDXTicket -TicketID '1394102' -CustomAttributeIDs @('4362','5308','7718') -CustomAttributeValues @('8169','a3e79204-8fc9-ea11-a81d-000d3a8ea9f7','Text for textbox')
-.EXAMPLE
-    New-TDXTicket # TODO
+    New-TDXTicket -AccountID 7902 -PriorityID 24 -TypeID 345 -StatusID 357 -Title "Test Ticket" -RequestorUID "3c3caa7d-c365-ed11-ade6-0050f2e6378b" -Description "test ticket"
 #>
 function New-TDXTicket{
     [CmdletBinding(DefaultParameterSetName="None")]
