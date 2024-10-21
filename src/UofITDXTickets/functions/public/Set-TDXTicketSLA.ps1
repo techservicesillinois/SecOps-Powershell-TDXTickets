@@ -21,6 +21,7 @@
     Set-TDXTicketSLA -TicketID '1394102' -NewSLAID 60 -UsersToNotify @('buch1@illinois.edu')
 #>
 function Set-TDXTicketSLA{
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
@@ -31,28 +32,29 @@ function Set-TDXTicketSLA{
     )
 
     process{
+        if ($PSCmdlet.ShouldProcess("Ticket ID: $($TicketID)/SLA ID: $($NewSLAID)", "Sets SLA for Ticket")){
+            $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/sla"
 
-        $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/sla"
+            $Body = @{
+                'NewSlaID' = $NewSLAID
+            }
 
-        $Body = @{
-            'NewSlaID' = $NewSLAID
+            if ($Comment) {
+                $Body['Comments'] = $Comment
+            }
+
+            if ($UsersToNotify) {
+                $Body['Notify'] = $UsersToNotify
+            }
+            
+            $RestSplat = @{
+                Method      = 'PUT'
+                RelativeURI = $RelativeUri
+                Body        = $Body | ConvertTo-Json
+            }
+
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
         }
-
-        if ($Comment) {
-            $Body['Comments'] = $Comment
-        }
-
-        if ($UsersToNotify) {
-            $Body['Notify'] = $UsersToNotify
-        }
-        
-        $RestSplat = @{
-            Method      = 'PUT'
-            RelativeURI = $RelativeUri
-            Body        = $Body | ConvertTo-Json
-        }
-
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
     }
 }
