@@ -17,6 +17,7 @@
     Set-TDXTicketWorkflow -TicketID '1394102' -NewWorkflowID 355132 -AllowRemoveExisting
 #>
 function Set-TDXTicketWorkflow{
+    [CmdletBinding(SupportsShouldProcess)]
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
@@ -26,15 +27,17 @@ function Set-TDXTicketWorkflow{
     )
 
     process{
+        if ($PSCmdlet.ShouldProcess("Ticket ID: $($TicketID)/Workflow ID: $($NewSLAID)", "Sets Workflow for Ticket")){
 
-        $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/workflow?newWorkflowId=$($NewWorkflowID)&allowRemoveExisting=$($AllowRemoveExisting)"
-        
-        $RestSplat = @{
-            Method      = 'PUT'
-            RelativeURI = $RelativeUri
+            $RelativeUri = "$($Script:Settings.AppID)/tickets/$($TicketID)/workflow?newWorkflowId=$($NewWorkflowID)&allowRemoveExisting=$($AllowRemoveExisting)"
+            
+            $RestSplat = @{
+                Method      = 'PUT'
+                RelativeURI = $RelativeUri
+            }
+
+            $Response = Invoke-TDXRestCall @RestSplat
+            $Response
         }
-
-        $Response = Invoke-TDXRestCall @RestSplat
-        $Response
     }
 }
