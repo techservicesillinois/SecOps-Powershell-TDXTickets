@@ -8,7 +8,11 @@
 .PARAMETER HasAppID
     The App ID to search for groups in.
 .EXAMPLE
-    Find-TDXGroups -NameSearch 'UIUC-TechServices-Privacy and Cybersecurity Group'
+    Find-TDXGroups -NameLike 'UIUC-TechServices-Privacy and Cybersecurity Group'
+.EXAMPLE
+    Find-TDXGroups -NameLike 'Privacy' -HasAppID 66
+.EXAMPLE
+    Find-TDXGroups -HasAppID 66
 #>
 function Find-TDXGroups{
     [CmdletBinding()]
