@@ -1,5 +1,5 @@
 {
     "BaseURI": ["https://help.uillinois.edu/TDWebApi/api/"],
     // Your TDX Application ID
-    "AppID": ["66"]
+    "AppID": ["01"]
 }
