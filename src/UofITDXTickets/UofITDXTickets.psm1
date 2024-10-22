@@ -1,5 +1,10 @@
 $Script:Settings = Get-Content -Path "$PSScriptRoot\settings.json" | ConvertFrom-Json
 
+# This will override the settings.json file if required.
+if ($env:TDXSettings) {
+    $script:Settings= $env:TDXSettings | ConvertFrom-Json
+}
+
 $Script:Session = $NULL
 [int]$Script:APICallCount = 0
 
