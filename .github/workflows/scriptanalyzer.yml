@@ -11,6 +11,8 @@ jobs:
   build:
 
     runs-on: ${{ matrix.os }}
+    env:
+      TDXSettings: '{ "BaseURI": [""], "AppID": ["01"] }'
     strategy:
       matrix:
         os: [windows-latest]
