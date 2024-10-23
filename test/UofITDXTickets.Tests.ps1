@@ -1,3 +1,4 @@
+# Need the TDXSettings environment variable set to be able to import the module and run the tests
 BeforeAll{
     $env:TDXSettings = '{ "BaseURI": [""], "AppID": ["01"] }'
     [String]$ModuleRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src\UofITDXTickets'
