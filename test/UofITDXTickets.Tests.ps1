@@ -1,5 +1,8 @@
-[String]$ModuleRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src\UofITDXTickets'
-Import-Module -Name $ModuleRoot
+BeforeAll{
+    $env:TDXSettings = '{ "BaseURI": [""], "AppID": ["01"] }'
+    [String]$ModuleRoot = Join-Path -Path (Split-Path -Path $PSScriptRoot -Parent) -ChildPath 'src\UofITDXTickets'
+    Import-Module -Name $ModuleRoot
+}
 
 Describe 'Module Manifest Tests' {
     It 'Passes Test-ModuleManifest' {
