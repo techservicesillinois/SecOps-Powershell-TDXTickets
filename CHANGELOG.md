@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.0.0] - 2024-10-24
+
+### Changed
+
+- Change module version number to 1.0.0 for release
+- Change module name in PublishToGallery Action
+- Change module name in CONTRIBUTING.md
+
+### Added
+
+- Icon added for PowerShell Gallery
+
+
 ## [0.0.1] - 2024-10-21
 
 ### Added
