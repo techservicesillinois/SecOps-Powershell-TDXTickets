@@ -14,7 +14,10 @@ Install-Module -Name 'UofITDXTickets'
 
 # How does it work?
 
-After installing the module, you should set $env:TDXSettings to a JSON-formatted string containing BaseURI and AppID properties (see settings.json for example).
+After installing the module, you should set $env:TDXSettings to a JSON-formatted string containing BaseURI and AppID properties, for example:
+```Powershell
+$Env:Tdxsettings = '{ "BaseURI": ["https://help.uillinois.edu/TDWebApi/api/"], "AppID": ["01"] }'
+```
 Import the module using:
 ```Powershell
 Import-Module -Name 'UofITDXTickets'
