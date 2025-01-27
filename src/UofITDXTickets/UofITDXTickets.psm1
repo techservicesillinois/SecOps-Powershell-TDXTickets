@@ -1,6 +1,4 @@
-$Script:Settings = Get-Content -Path "$PSScriptRoot\settings.json" | ConvertFrom-Json
-
-# This will override the settings.json file if required.
+# Use environment variable for TDXSettings (explained in README.md)
 if ($env:TDXSettings) {
     $script:Settings=$env:TDXSettings | ConvertFrom-Json
 }

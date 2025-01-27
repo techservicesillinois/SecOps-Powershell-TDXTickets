@@ -10,48 +10,63 @@
 .EXAMPLE
     Add-TDXTicketAttachment -TicketID '1394102' -InputFilePath 'C:\temp\MyFile.xlsx'
 #>
-function Add-TDXTicketAttachment{
+function Add-TDXTicketAttachment {
     param (
         [Parameter(Mandatory=$true)]
         [Int]$TicketID,
         [Parameter(Mandatory=$true)]
         [String]$InputFilePath
     )
+    process {
+        # Get filename from path
+        if ($InputFilePath -like "*\*") {
+            $FileName = $InputFilePath.Split('\')[-1]
+        }
+        elseif ($InputFilePath -like "*/*") {
+            $FileName = $InputFilePath.Split('/')[-1]
+        }
+        else {
+            $FileName = $InputFilePath
+        }
 
-    process{
-
-        # Encode file
-        if($InputFilePath -like "*\*"){
-            $FileName = $inputfilepath.Split('\')[-1]
-        }
-        elseif($InputFilePath -like "*/*"){
-            $FileName = $inputfilepath.Split('/')[-1]
-        }
-        else{
-            $FileName = $inputfilepath
-        }
-        $fileBytes = [System.IO.File]::ReadAllBytes("$($InputFilePath)");
-        $fileEnc = [System.Text.Encoding]::GetEncoding('ISO-8859-1').GetString($fileBytes)
+        # Generate boundary for multipart form
         $boundary = [System.Guid]::NewGuid().ToString()
         $LF = "`r`n"
-        $bodyLines = (
-            "--$boundary",
-            "Content-Disposition: form-data; name=`"$($FileName)`"; filename=`"$($FileName)`"",
-            "Content-Type: application/octet-stream$LF",
-            $fileEnc,
-            "--$boundary--$LF"
-        ) -join $LF
 
-        # Make the REST API call (not using Invoke-TDXRestCall because of unique requirements)
+        # Create temporary memory stream to build the multipart form data
+        $memStream = New-Object System.IO.MemoryStream
+        $writer = New-Object System.IO.StreamWriter($memStream)
+
+        # Write the form boundary
+        $writer.Write("--$boundary$LF")
+        $writer.Write("Content-Disposition: form-data; name=`"file`"; filename=`"$FileName`"$LF")
+        $writer.Write("Content-Type: application/octet-stream$LF$LF")
+        $writer.Flush()
+
+        # Copy file contents directly as bytes
+        $fileStream = [System.IO.File]::OpenRead($InputFilePath)
+        $fileStream.CopyTo($memStream)
+        $fileStream.Close()
+
+        # Write closing boundary
+        $writer.Write("$LF--$boundary--$LF")
+        $writer.Flush()
+
+        # Get the complete body as bytes
+        $bodyBytes = $memStream.ToArray()
+        $memStream.Close()
+
+        # Make the REST API call
         $IVRSplat = @{
             Headers = @{
-                'Content-Type' = "multipart/form-data; boundary=`"$boundary`""
+                'Content-Type' = "multipart/form-data; boundary=$boundary"
                 'Authorization' = "Bearer $($Script:Session)"
             }
             Method = 'POST'
             URI = "https://help.uillinois.edu/TDWebApi/api/$($Script:Settings.AppID)/tickets/$($TicketID)/attachments"
+            Body = $bodyBytes
         }
-        $IVRsplat.add('Body', $BodyLines)
+
         $Attachment = Invoke-RestMethod @IVRSplat
         $Attachment
     }
