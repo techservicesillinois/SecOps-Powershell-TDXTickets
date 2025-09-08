@@ -19,10 +19,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Get-TDXTicketAttachmentContent: Download an attachment from a ticket
 
-### Removed
-
-- Settings.json: moved example in this file to the README.md for clarity.
-
 ## [1.0.1] - 2025-01-27
 
 ### Changed
