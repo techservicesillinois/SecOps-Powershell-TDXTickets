@@ -5,8 +5,10 @@
     Gets the contents of an attachment.
 .PARAMETER AttachmentID
     The ID of the Attachment. This can be found by inspecting the Attachments property returned by Get-TDXTicket.
+.PARAMETER OutputPath
+    The path to save the file attachment to.
 .EXAMPLE
-    Get-TDXTicketAttachmentContent -AttachmentID '888affd7-34f6-47d3-899e-79b2b45b59fd'
+    Get-TDXTicketAttachmentContent -AttachmentID '888affd7-34f6-47d3-899e-79b2b45b59ff' -OutputPath 'C:\Temp\attachment.xlsx'
 #>
 function Get-TDXTicketAttachmentContent {
     param (
