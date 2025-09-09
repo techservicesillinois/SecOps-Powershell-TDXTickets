@@ -13,6 +13,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+## [1.1.0] - 2025-09-08
+
+### Added
+
+- Get-TDXTicketAttachmentContent: Download an attachment from a ticket
+
 ## [1.0.1] - 2025-01-27
 
 ### Changed

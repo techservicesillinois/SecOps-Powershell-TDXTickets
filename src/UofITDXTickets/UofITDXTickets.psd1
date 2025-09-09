@@ -10,7 +10,7 @@
 RootModule = 'UofITDXTickets.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0.1'
+ModuleVersion = '1.1.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -90,7 +90,8 @@ FunctionsToExport = @(
     'Get-TDXTicketTypes',
     'Find-TDXGroups',
     'Get-TDXReportList',
-    'Get-TDXReport'
+    'Get-TDXReport',
+    'Get-TDXTicketAttachmentContent'
     )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
