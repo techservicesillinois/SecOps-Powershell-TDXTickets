@@ -14,7 +14,7 @@ function Get-TDXTicketAttachmentContent {
     param (
         [Parameter(Mandatory=$true)]
         [string]$AttachmentID,
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory=$true)]
         [string]$OutputPath
     )
     process {
